@@ -1,6 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 const PlanCard = () => {
   return (
     <View style={styles.cardShadow}>
@@ -10,6 +12,7 @@ const PlanCard = () => {
             <Text style={styles.title}>John's Fatloss Program</Text>
             <Text style={styles.date}>16th March 2018</Text>
           </View>
+          <Icon name="bookmark-outline" color="#000" size={24} />
         </View>
         <Text style={styles.description}>
           Proin suscipit, tortor nisl, non ornare urna, pharetra, donec,
@@ -40,6 +43,8 @@ const styles = StyleSheet.create({
 
   header: {
     marginBottom: 8,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 
   title: {

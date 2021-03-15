@@ -13,6 +13,8 @@ import {nanoid} from 'nanoid';
 
 import PlanCard from './../components/PlanCard';
 import PillsFilter from './../components/PillsFilter';
+import FAB from './../components/FAB';
+import SearchBar from './../components/SearchBar';
 
 const pills = [
   {label: 'All', id: nanoid()},
@@ -25,7 +27,8 @@ const RecentPlansView = ({navigation}) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.logo}>Parkour</Text>
-        <TextInput style={styles.searchBar} placeholder="Search for plans" />
+        {/* <TextInput style={styles.searchBar} placeholder="Search for plans" /> */}
+        <SearchBar />
 
         <PillsFilter pills={pills} />
       </View>
@@ -38,6 +41,7 @@ const RecentPlansView = ({navigation}) => {
         <PlanCard />
         <PlanCard />
       </ScrollView>
+      <FAB />
     </View>
   );
 };
