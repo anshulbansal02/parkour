@@ -6,7 +6,8 @@ const ItemChip = ({title}) => {
     <View style={styles.itemChip}>
       <Pressable
         style={styles.item}
-        onLongPress={() => console.log(`${title} Chip long pressed`)}>
+        // onLongPress={() => console.log(`${title} Chip long pressed`)}
+      >
         <Text style={styles.itemLabel}>{title}</Text>
       </Pressable>
     </View>
@@ -14,7 +15,9 @@ const ItemChip = ({title}) => {
 };
 
 const styles = StyleSheet.create({
-  itemChip: {},
+  // itemChip: {
+  //   alignSelf: 'flex-start',
+  // },
   itemLabel: {
     fontSize: 14,
     fontFamily: 'Inter-Medium',
