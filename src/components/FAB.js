@@ -3,15 +3,13 @@ import {Text, Pressable, View, StyleSheet} from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const FAB = () => {
+const FAB = ({onPress: handlePress}) => {
   return (
     <View style={styles.fabContainer}>
       <Pressable
         style={styles.fab}
         android_ripple={{color: 'grey', borderless: true}}
-        onPress={() => {
-          console.log('FAB was pressed');
-        }}>
+        onPress={handlePress}>
         <Icon name="plus" size={24} color="#fff" />
         <Text style={styles.label}>New Plan</Text>
       </Pressable>

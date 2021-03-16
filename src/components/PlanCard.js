@@ -70,11 +70,11 @@ const styles = StyleSheet.create({
 
   nutritionList: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
   },
 
   nutrition: {
-    fontSize: 14,
+    fontSize: 13,
     fontFamily: 'Inter-Medium',
   },
 });

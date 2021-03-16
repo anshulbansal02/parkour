@@ -27,7 +27,6 @@ const RecentPlansView = ({navigation}) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.logo}>Parkour</Text>
-        {/* <TextInput style={styles.searchBar} placeholder="Search for plans" /> */}
         <SearchBar />
 
         <PillsFilter pills={pills} />
@@ -41,7 +40,11 @@ const RecentPlansView = ({navigation}) => {
         <PlanCard />
         <PlanCard />
       </ScrollView>
-      <FAB />
+      <FAB
+        onPress={() =>
+          navigation.navigate('ModalsNavigator', {screen: 'PlanView'})
+        }
+      />
     </View>
   );
 };
@@ -62,15 +65,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textTransform: 'uppercase',
     marginBottom: 8,
-  },
-
-  searchBar: {
-    height: 56,
-    paddingHorizontal: 24,
-    borderWidth: 2,
-    borderColor: 'rgba(0,0,0,0.1)',
-    borderRadius: 12,
-    marginBottom: 16,
   },
 
   subHeading: {

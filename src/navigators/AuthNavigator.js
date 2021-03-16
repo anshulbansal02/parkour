@@ -1,6 +1,10 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import {
+  createStackNavigator,
+  TransitionPreset,
+  CardStyleInterpolators,
+} from '@react-navigation/stack';
 
 import {LogInView, SignUpView} from './../views';
 import ResetPasswordView from './../views/ResetPasswordView';
