@@ -1,23 +1,10 @@
-import AddItemView from './AddItemView';
-import EditSlotView from './EditSlotView';
-import InventoryView from './InventoryView';
-import LogInView from './LogInView';
-import PlanView from './PlanView';
-import ProfileView from './ProfileView';
-import RecentPlansView from './RecentPlansView';
-import ResetPasswordView from './ResetPasswordView';
-import SignUpView from './SignUpView';
-import SplashView from './SplashView';
-
-export {
-  AddItemView,
-  EditSlotView,
-  InventoryView,
-  LogInView,
-  PlanView,
-  ProfileView,
-  RecentPlansView,
-  ResetPasswordView,
-  SignUpView,
-  SplashView,
-};
+export {default as AddItemView} from './AddItemView';
+export {default as EditSlotView} from './EditSlotView';
+export {default as InventoryView} from './InventoryView';
+export {default as LogInView} from './LogInView';
+export {default as PlanView} from './PlanView';
+export {default as ProfileView} from './ProfileView';
+export {default as RecentPlansView} from './RecentPlansView';
+export {default as ResetPasswordView} from './ResetPasswordView';
+export {default as SignUpView} from './SignUpView';
+export {default as SplashView} from './SplashView';

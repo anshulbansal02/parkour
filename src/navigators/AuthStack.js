@@ -6,8 +6,7 @@ import {
   CardStyleInterpolators,
 } from '@react-navigation/stack';
 
-import {LogInView, SignUpView} from './../views';
-import ResetPasswordView from './../views/ResetPasswordView';
+import {LogInView, SignUpView, ResetPasswordView} from './../views';
 
 const AuthStack = () => {
   const Stack = createStackNavigator();

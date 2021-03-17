@@ -4,8 +4,7 @@ import {View, Text, StyleSheet, TextInput} from 'react-native';
 import 'react-native-get-random-values';
 import {nanoid} from 'nanoid';
 
-import ItemChip from './../components/ItemChip';
-import FloatingInput from '../components/FloatingInput';
+import {ItemChip, FloatingInput} from './../components/';
 
 const EditSlotView = ({navigation}) => {
   const [items, setItems] = useState(['lroem']);

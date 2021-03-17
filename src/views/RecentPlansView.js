@@ -11,10 +11,7 @@ import {
 import 'react-native-get-random-values';
 import {nanoid} from 'nanoid';
 
-import PlanCard from './../components/PlanCard';
-import PillsFilter from './../components/PillsFilter';
-import FAB from './../components/FAB';
-import SearchBar from './../components/SearchBar';
+import {PlanCard, PillsFilter, FAB, SearchBar} from './../components';
 
 const pills = [
   {label: 'All', id: nanoid()},

@@ -2,9 +2,7 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import RecentPlansView from './../views/RecentPlansView';
-import InventoryView from './../views/InventoryView';
-import ProfileView from './../views/ProfileView';
+import {RecentPlansView, InventoryView, ProfileView} from './../views';
 
 const AppTabs = () => {
   const Tabs = createBottomTabNavigator();
