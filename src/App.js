@@ -1,11 +1,14 @@
 import React from 'react';
-import {Text, View, SafeAreaView} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
 
-import * as styles from './styles';
-import MainNavigator from './navigators';
+import {RootStack} from './navigators';
 
 const App = () => {
-  return <MainNavigator />;
+  return (
+    <NavigationContainer>
+      <RootStack />
+    </NavigationContainer>
+  );
 };
 
 export default App;

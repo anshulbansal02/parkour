@@ -10,9 +10,7 @@ const InventoryView = ({navigation}) => {
       <Button title="Go Back" onPress={() => navigation.goBack()} />
       <Button
         title="Add/Edit Item"
-        onPress={() =>
-          navigation.navigate('ModalsNavigator', {screen: 'AddItem'})
-        }
+        onPress={() => navigation.navigate('ItemModal')}
       />
     </View>
   );

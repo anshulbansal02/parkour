@@ -40,11 +40,7 @@ const RecentPlansView = ({navigation}) => {
         <PlanCard />
         <PlanCard />
       </ScrollView>
-      <FAB
-        onPress={() =>
-          navigation.navigate('ModalsNavigator', {screen: 'PlanView'})
-        }
-      />
+      <FAB onPress={() => navigation.navigate('PlanModal')} />
     </View>
   );
 };

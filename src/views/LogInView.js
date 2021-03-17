@@ -8,10 +8,7 @@ const LogInView = ({navigation}) => {
     <View style={styles.container}>
       <Text>Log In View</Text>
       <Button title="Go Back" onPress={() => navigation.goBack()} />
-      <Button
-        title="Log In"
-        onPress={() => navigation.navigate('AppNavigator')}
-      />
+      <Button title="Log In" onPress={() => navigation.navigate('AppTabs')} />
       <Button title="Sign Up" onPress={() => navigation.navigate('SignUp')} />
       <Button
         title="Forgot Password"

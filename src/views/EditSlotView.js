@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, TextInput} from 'react-native';
 
+import 'react-native-get-random-values';
 import {nanoid} from 'nanoid';
 
 import ItemChip from './../components/ItemChip';

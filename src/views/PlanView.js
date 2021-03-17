@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Button, StyleSheet, Pressable} from 'react-native';
+import {View, Text, Button, StyleSheet, Pressable, Switch} from 'react-native';
 import Slot from '../components/Slot';
 
 const PlanView = ({navigation}) => {
@@ -37,6 +37,15 @@ const PlanView = ({navigation}) => {
         <Slot />
         <Slot />
       </View>
+      <Button
+        title="New Slot"
+        onPress={() => navigation.navigate('SlotModal')}
+      />
+      <View style={{marginVertical: 16}}>
+        <Button title="Save Plan" />
+      </View>
+
+      <Button title="Discard Plan" />
     </View>
   );
 };
@@ -80,7 +89,7 @@ const styles = StyleSheet.create({
 
   nutriBar: {
     backgroundColor: '#fff',
-    elevation: 6,
+    elevation: 3,
     borderRadius: 12,
     height: 80,
     flexDirection: 'row',
