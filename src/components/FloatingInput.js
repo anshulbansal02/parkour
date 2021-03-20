@@ -1,34 +1,28 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  Pressable,
-  Keyboard,
-} from 'react-native';
+import {View, Text, StyleSheet, TextInput, Pressable} from 'react-native';
 
-const FloatingInput = () => {
+const FloatingInput = ({onSubmit: submitInput, navigation}) => {
   const [inputText, setInputText] = useState('');
 
   return (
     <View style={styles.floatingInputBox}>
       <TextInput
         style={styles.floatingInput}
+        autoFocus={true}
         maxLength={50}
         placeholder="New item"
         blurOnSubmit={false}
         value={inputText}
         onChangeText={(text) => setInputText(text)}
-        onSubmitEditing={({nativeEvent}) => {
-          setItems([...items, nativeEvent.text]);
+        onSubmitEditing={() => {
+          submitInput(inputText);
+          setInputText('');
         }}
       />
 
       <Pressable
         onPress={() => {
-          Keyboard.dismiss();
-          setInputText('');
+          navigation.goBack();
         }}
         style={styles.transparentBtn}>
         <Text style={styles.btnText}>Done</Text>
