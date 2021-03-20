@@ -3,7 +3,6 @@ import React from 'react';
 import {Platform} from 'react-native';
 import {
   createStackNavigator,
-  TransitionPresets,
   CardStyleInterpolators,
 } from '@react-navigation/stack';
 
@@ -13,7 +12,6 @@ import AuthStack from './AuthStack';
 import {AddItemView, EditSlotView, PlanView} from '../views';
 
 const RootStack = () => {
-  console.log(Platform.OS);
   const Stack = createStackNavigator();
 
   return (
@@ -42,35 +40,11 @@ const RootStack = () => {
         name="ItemModal"
         component={AddItemView}
         options={{
-          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+          cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
         }}
       />
     </Stack.Navigator>
   );
 };
-
-// const MainNavigator = () => {
-//   const MainStack = createStackNavigator();
-
-//   return (
-//     <NavigationContainer>
-//       <StatusBar barStyle="dark-content" backgroundColor="#ebebeb" />
-//       <MainStack.Navigator initialRouteName="AuthNavigator" headerMode="none">
-//         <MainStack.Screen name="AuthNavigator" component={AuthNavigator} />
-//         <MainStack.Screen name="AppNavigator" component={AppNavigator} />
-//         <MainStack.Screen
-//           name="ModalsNavigator"
-//           component={ModalsNavigator}
-//           options={{
-//             cardStyleInterpolator:
-//               CardStyleInterpolators.forRevealFromBottomAndroid,
-//           }}
-//         />
-//       </MainStack.Navigator>
-
-//       {/* <BottomSheet /> */}
-//     </NavigationContainer>
-//   );
-// };
 
 export default RootStack;

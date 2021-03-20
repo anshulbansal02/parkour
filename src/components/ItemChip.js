@@ -4,10 +4,7 @@ import {Text, View, Pressable, StyleSheet} from 'react-native';
 const ItemChip = ({title}) => {
   return (
     <View style={styles.itemChip}>
-      <Pressable
-        style={styles.item}
-        // onLongPress={() => console.log(`${title} Chip long pressed`)}
-      >
+      <Pressable style={styles.item}>
         <Text style={styles.itemLabel}>{title}</Text>
       </Pressable>
     </View>
