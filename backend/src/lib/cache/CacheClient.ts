@@ -6,7 +6,7 @@ const log = createLogger("Cache");
 
 export class CacheClient {
   private static _instance: CacheClient;
-  public client: RedisClientType;
+  public redis: RedisClientType;
   private config: CacheConfig;
 
   constructor(config: CacheConfig) {
@@ -30,17 +30,17 @@ export class CacheClient {
   async init() {
     const { host, port, username, password } = this.config;
 
-    this.client = createClient({
+    this.redis = createClient({
       username,
       password,
       socket: { host, port },
     });
 
-    this.client.on("error", () => {
+    this.redis.on("error", () => {
       log.error("Cache Service Error");
     });
 
-    await this.client.connect();
+    await this.redis.connect();
 
     log.info("Cache Server Connected");
   }
