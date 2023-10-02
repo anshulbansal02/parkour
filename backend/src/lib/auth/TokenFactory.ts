@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import * as jose from "jose";
 
 interface TokenConfig {
   /** Issuer */
@@ -14,12 +14,12 @@ interface Claims extends TokenConfig {
 }
 
 export class TokenFactory<T> {
-  private readonly ALGO: jwt.Algorithm = "ES256";
+  private readonly ALGO = "ES256";
+  private signingKey: Uint8Array;
 
-  constructor(
-    private readonly signingKey: jwt.Secret,
-    private readonly config?: TokenConfig
-  ) {}
+  constructor(secret: string, private readonly config?: TokenConfig) {
+    this.signingKey = new TextEncoder().encode(secret);
+  }
 
   private preparePayload(claims: Record<string, any>): Claims {
     const payload = {
@@ -30,28 +30,24 @@ export class TokenFactory<T> {
     return payload;
   }
 
-  public verifyAndDecode(token: string): Promise<T> {
-    return new Promise((resolve, reject) => {
-      jwt.verify(token, this.signingKey, (error, decoded) => {
-        if (error) reject(error);
-        else resolve(decoded as T);
-      });
-    });
+  public async verifyAndDecode(token: string): Promise<T> {
+    const { payload, protectedHeader } = await jose.jwtVerify(
+      token,
+      this.signingKey
+    );
+
+    return payload as T;
   }
 
-  public sign(claims: any): Promise<string> {
-    return new Promise((resolve, reject) => {
-      const payload = this.preparePayload(claims);
+  public async sign(claims: any): Promise<string> {
+    const payload = this.preparePayload(claims);
 
-      jwt.sign(
-        payload,
-        this.signingKey,
-        { algorithm: this.ALGO },
-        (error, token) => {
-          if (error) reject(error);
-          else resolve(token ?? "");
-        }
-      );
+    const jwtSigner = new jose.SignJWT(payload).setProtectedHeader({
+      alg: this.ALGO,
     });
+
+    const token = await jwtSigner.sign(this.signingKey);
+
+    return token;
   }
 }

@@ -21,7 +21,7 @@
     "date-fns": "^2.30.0",
     "express": "next",
     "helmet": "^7.0.0",
-    "jsonwebtoken": "^9.0.2",
+    "jose": "^4.15.1",
     "pg": "^8.11.3",
     "redis": "^4.6.8",
     "reflect-metadata": "^0.1.13",
