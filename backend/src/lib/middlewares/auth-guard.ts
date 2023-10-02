@@ -1,6 +1,3 @@
-// import jwt from "jsonwebtoken";
-// import Bowser from "bowser";
-
 import { TokenFactory } from "@lib/auth";
 import { CacheRepository } from "@lib/cache";
 import { NextFunction, Request, Response } from "express";
@@ -191,7 +188,7 @@ declare global {
   namespace Express {
     interface Request {
       token: string | undefined;
-      auth: AccessToken;
+      auth?: AccessToken;
     }
   }
 }
@@ -205,58 +202,61 @@ function tokenParser(req: Request, res: Response, next: NextFunction) {
   next();
 }
 
-interface AuthGuardOptions {
-  delegateResponse: boolean;
-}
-
-const tokenBlocklist = new CacheRepository<string>("auth:token:blocklist");
-
-// function AuthGuard(opts: AuthGuardOptions) {
-//   return async function (req: Request, res: Response, next: NextFunction) {
-//     function handleUnauthorizedResponse(message = "") {
-//       if (opts.delegateResponse) {
-//         next();
-//       } else {
-//         res.dispatch.Unauthorized(message);
-//       }
-//     }
-
-//     // Request doesn't have any token
-//     if (!req.token) {
-//       handleUnauthorizedResponse(
-//         "Provide bearer access token in authorization header"
-//       );
-//       return;
-//     }
-
-//     // Check token blocklist
-//     if (await tokenBlocklist.exists(req.token)) {
-//       handleUnauthorizedResponse("Invalid access token");
-//       return;
-//     }
-
-//     try {
-//       // Verify token validity
-//       const payload = await AccessTokenFactory.verifyAndDecode(req.token);
-
-//       // // Verify roles associated with token
-//       // if (!(payload.role in roles)) {
-//       //   handleUnauthorizedResponse();
-//       // }
-
-//       // Attach authenticated user to request
-//       req.auth = payload;
-
-//       next();
-//     } catch (err) {
-//       if (err.name === "TokenError") handleUnauthorizedResponse(err.message);
-//       else next(err);
-//     }
-//   };
-// }
-
 interface AccessToken {
   userId: string;
 }
 
-const AccessTokenFactory = new TokenFactory<AccessToken>("mysecret");
+const AccessTokenFactory = new TokenFactory<AccessToken>("mysecre2t");
+
+const tokenBlocklist = new CacheRepository<string>(
+  "auth:access_token:blocklist"
+);
+
+interface AuthGuardOptions {
+  delegateResponse: boolean;
+}
+
+function AuthGuard(opts: AuthGuardOptions) {
+  return async function (req: Request, res: Response, next: NextFunction) {
+    function handleUnauthorizedResponse(message = "") {
+      if (opts.delegateResponse) {
+        next();
+      } else {
+        res.dispatch.Unauthorized(message);
+      }
+    }
+
+    // Request doesn't have any token
+    if (!req.token) {
+      handleUnauthorizedResponse(
+        "Provide bearer access token in authorization header"
+      );
+      return;
+    }
+
+    // Check token blocklist
+    if (await tokenBlocklist.exists(req.token)) {
+      handleUnauthorizedResponse("Invalid access token");
+      return;
+    }
+
+    try {
+      // Verify token validity
+      const payload = await AccessTokenFactory.verifyAndDecode(req.token);
+
+      // // Verify roles associated with token
+      // if (!(payload.role in roles)) {
+      //   handleUnauthorizedResponse();
+      // }
+
+      // Attach authenticated user to request
+      req.auth = payload;
+
+      next();
+    } catch (err) {
+      if (err instanceof Error) {
+        if (err.name === "TokenError") handleUnauthorizedResponse(err.message);
+      } else next(err);
+    }
+  };
+}
