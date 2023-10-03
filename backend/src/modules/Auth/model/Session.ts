@@ -3,16 +3,16 @@ import { Column, Entity, OneToOne, PrimaryColumn } from "typeorm";
 @Entity()
 class Session {
   @PrimaryColumn()
-  session_id: number;
+  sessionId: number;
 
   @Column("date")
-  user_id: Date;
+  userId: Date;
 
   @Column("int")
-  access_tokens: number;
+  accessTokens: number;
 
   @Column("int")
-  created_at: number;
+  createdAt: number;
 
   @Column()
   location: string;

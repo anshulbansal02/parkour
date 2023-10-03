@@ -38,7 +38,14 @@ export class ResponseDispatcher {
   private createDispatcher(s: { code: number; name: string }) {
     return (payload?: any) => {
       this.res.status(s.code);
-      this.res.json(payload ?? { message: s.name });
+
+      let responseBody;
+      if (typeof payload === "string") responseBody = { message: payload };
+      else if (payload === null || payload === undefined)
+        responseBody = { message: s.name };
+      else responseBody = payload;
+
+      this.res.json(responseBody);
     };
   }
 

@@ -194,7 +194,7 @@ declare global {
 }
 
 // Middlewares
-function tokenParser(req: Request, res: Response, next: NextFunction) {
+export function tokenParser(req: Request, res: Response, next: NextFunction) {
   const authHeader = req.header("Authorization");
   const token = authHeader?.split(" ")[1];
 

@@ -1,4 +1,4 @@
-import { type ZodSchema, z, ZodError } from "zod";
+import { type ZodSchema, ZodError } from "zod";
 import { Request, Response } from "express";
 
 interface ValidationSchema extends ZodSchema {}

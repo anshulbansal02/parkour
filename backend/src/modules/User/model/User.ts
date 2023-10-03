@@ -1,6 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import Identity from "@modules/Auth/model/Identity";
+import {
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  Relation,
+} from "typeorm";
 
-export const UserKind = ["provider", "consumer"] as const;
+export const UserKinds = ["provider", "consumer"] as const;
 
 @Entity()
 class User {
@@ -13,14 +20,11 @@ class User {
   @Column("varchar")
   lastName: string;
 
-  @Column({ type: "enum", enum: UserKind })
-  kind: (typeof UserKind)[number];
+  @Column({ type: "enum", enum: UserKinds })
+  kind: (typeof UserKinds)[number];
 
-  @Column("varchar")
-  email: string;
-
-  @Column({ type: "varchar", nullable: true })
-  phone: string;
+  @OneToMany(() => Identity, (identity) => identity.user)
+  identities: Relation<Identity>;
 }
 
 export default User;

@@ -1,11 +1,11 @@
 import { z } from "zod";
-import { UserKind } from "../model/User";
+import { UserKinds } from "../model/User";
 
 const CreateUserDTO = z.object({
   firstName: z.string(),
   lastName: z.string(),
-  email: z.string(),
-  kind: z.enum(UserKind),
+  email: z.string().email(),
+  kind: z.enum(UserKinds),
 });
 
 export { CreateUserDTO };
